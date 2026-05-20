@@ -353,11 +353,13 @@ Route::prefix('admin')->group(function () {
 
         //Pradeebha 
         Route::post('/add_popup_manager', [PopupController::class, 'add_popup_manager'])->name('add_popup_manager');
+        Route::get('/getPopups', [PopupController::class, 'getPopups'])->name('getPopups');
         Route::post('/add_candidate', [CandidateController::class, 'add_candidate'])->name('add_candidate');
         Route::get('/candidate_list', [CandidateController::class, 'candidate_list'])->name('candidate_list');
         Route::post('/update_call_status', [CandidateController::class, 'update_call_status'])->name('update_call_status');
         Route::get('/view_status_data/{id}', [CandidateController::class, 'view_status_data'])->name('view_status_data');
         Route::post('/update_candidate', [CandidateController::class, 'update_candidate'])->name('update_candidate');
+        Route::post('/update_popup_status', [PopupController::class, 'update_popup_status'])->name('update_popup_status');
 
     });
 });

@@ -29,6 +29,7 @@ use App\Models\Communication;
 use App\Models\CommunicationAttachment;
 use App\Models\ProjectDocuments;
 use App\Models\Document;
+use App\Models\Popup;
 use Hash;
 use Http;
 use Illuminate\Http\Request;
@@ -4989,8 +4990,10 @@ public function popup_manager_form()
 
 }
 public function popup_manager()
-{
-    return view('Admin.popup_manager');
+{    
+    $popups = Popup::latest()->get();
+
+    return view('Admin.popup_manager',compact('popups'));
 }
 
 public function store_communication(Request $request)
