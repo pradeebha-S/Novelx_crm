@@ -169,6 +169,8 @@ $(document).ready(function() {
                 data: 'popup_status',
                 render: function(data, type, row) {
 
+                    let label = data === 'active' ? 'Active' : 'Inactive';
+
                     let badgeClass = data === 'active' ?
                         'bg-label-success' :
                         'bg-label-danger';
@@ -178,7 +180,7 @@ $(document).ready(function() {
                 role="button"
                 data-id="${row.id}"
                 data-status="${data}">
-                ${data}
+                ${label}
             </span>
         `;
                 }
@@ -186,24 +188,27 @@ $(document).ready(function() {
 
             {
                 data: 'noted_count',
+                name: 'count',
                 render: function(data) {
                     return `<span class="badge bg-label-primary">${data}</span>`;
                 }
             },
 
-            {
+           {
                 data: 'done_status',
                 render: function(data) {
 
-                    let statusClass = data === 'done' ?
-                        'bg-label-success' :
-                        'bg-label-warning';
+                    let label = (data === 'done') ? 'Completed' : 'Pending';
+
+                    let statusClass = (data === 'done')
+                        ? 'bg-label-success'
+                        : 'bg-label-warning';
 
                     return `
-            <span class="badge ${statusClass}">
-                ${data}
-            </span>
-        `;
+                        <span class="badge ${statusClass}">
+                            ${label}
+                        </span>
+                    `;
                 }
             }
         ]

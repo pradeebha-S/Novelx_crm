@@ -2,14 +2,15 @@
 <html lang="en" class=" layout-navbar-fixed layout-menu-fixed layout-compact " dir="ltr" data-skin="default"
     data-bs-theme="light" data-assets-path="{{ asset('/assets') }}/" data-template="vertical-menu-template">
 <script>
-    (function() {
-        const themeKey = 'templateCustomizer-vertical-menu-template--Theme';
-        const savedTheme = localStorage.getItem(themeKey);
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-bs-theme', savedTheme);
-        }
-    })();
+(function() {
+    const themeKey = 'templateCustomizer-vertical-menu-template--Theme';
+    const savedTheme = localStorage.getItem(themeKey);
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-bs-theme', savedTheme);
+    }
+})();
 </script>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport"
@@ -49,16 +50,18 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('/assets') }}/js/config.js"></script>
     <style>
-        .red {
-            color: red;
-        }
-        .out {
-            font-weight: 370;
-            font-size: 15px;
-            color: red;
-        }
+    .red {
+        color: red;
+    }
+
+    .out {
+        font-weight: 370;
+        font-size: 15px;
+        color: red;
+    }
     </style>
 </head>
+
 <body>
     @if (session('success') || session('error') || $errors->any())
     <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999; max-width: 100%;">
@@ -100,10 +103,10 @@
                 </div>
                 <div class="menu-inner-shadow"></div>
                 @php
-                $wfhCount        = \App\Models\Wfh::where('is_replied','0')->count();
-                $leaveCount      = \App\Models\Leave::where('is_replied','0')->count();
+                $wfhCount = \App\Models\Wfh::where('is_replied','0')->count();
+                $leaveCount = \App\Models\Leave::where('is_replied','0')->count();
                 $permissionCount = \App\Models\Permission::where('is_replied','0')->count();
-                $totalRequest    = $wfhCount + $leaveCount + $permissionCount;
+                $totalRequest = $wfhCount + $leaveCount + $permissionCount;
                 @endphp
                 <ul class="menu-inner py-1">
                     <li class="menu-item  @if(Route::is('admin.dashboard')) active @endif">
@@ -163,13 +166,13 @@
                             <div data-i18n="Project Invoice">Project Invoice</div>
                         </a>
                     </li> -->
-                     <li class="menu-item @if(Route::is('add_bank')) active @endif">
+                    <li class="menu-item @if(Route::is('add_bank')) active @endif">
                         <a href="{{ route('add_bank') }}" class="menu-link">
                             <i class="menu-icon icon-base ti tabler-building-bank"></i>
                             <div data-i18n="Add Bank">Add Bank</div>
                         </a>
                     </li>
-                     <li class="menu-item @if(Route::is('admin.candidates')) active @endif">
+                    <li class="menu-item @if(Route::is('admin.candidates')) active @endif">
                         <a href="{{ route('admin.candidates') }}" class="menu-link">
                             <i class="menu-icon icon-base ti tabler-users"></i>
                             <div data-i18n="Candidates">Candidates</div>
@@ -177,25 +180,26 @@
                     </li>
                     @php
 
-$adminUnreadReplyCount = \App\Models\CommunicationReply::where('reply_from', 'staff')
-                  ->where('is_read', '0')
-->count();
+                    $adminUnreadReplyCount = \App\Models\CommunicationReply::where('reply_from', 'staff')
+                    ->where('is_read', '0')
+                    ->count();
 
-@endphp
-                         <li class="menu-item @if (Route::is('create_communication')||Route::is('mail_table')||Route::is('reply')||Route::is('view_mail')) active @endif">
+                    @endphp
+                    <li
+                        class="menu-item @if (Route::is('create_communication')||Route::is('mail_table')||Route::is('reply')||Route::is('view_mail')) active @endif">
                         <a href="{{ route('mail_table') }}" class="menu-link">
                             <i class="menu-icon icon-base ti tabler-mail"></i>
-                            <div data-i18n="Mails">Mails</div
-                            >
+                            <div data-i18n="Mails">Mails</div>
                             @if($adminUnreadReplyCount > 0)
-    <div class="badge text-bg-danger ms-auto">
-        {{ $adminUnreadReplyCount }}
-    </div>
-@endif
+                            <div class="badge text-bg-danger ms-auto">
+                                {{ $adminUnreadReplyCount }}
+                            </div>
+                            @endif
                             <!-- <div class="badge text-bg-danger ms-auto">5</div> -->
                         </a>
                     </li>
-                       <li class="menu-item @if (Route::is('popup_manager')||Route::is('popup_manager_form')) active @endif">
+                    <li
+                        class="menu-item @if (Route::is('popup_manager')||Route::is('popup_manager_form')) active @endif">
                         <a href="{{ route('popup_manager') }}" class="menu-link">
                             <i class="menu-icon icon-base ti tabler-mail"></i>
                             <div data-i18n="Popup Management">Popup Management</div>
@@ -273,6 +277,12 @@ $adminUnreadReplyCount = \App\Models\CommunicationReply::where('reply_from', 'st
                             <div data-i18n="Reminders">Reminders</div>
                         </a>
                     </li>
+                    <li class="menu-item @if(Route::is('admin.common_expenses')) active @endif">
+                        <a href="{{ route('admin.common_expenses') }}" class="menu-link">
+                            <i class="menu-icon icon-base ti tabler-report"></i>
+                            <div data-i18n="Expenses">Expenses</div>
+                        </a>
+                    </li>
                     <li
                         class="menu-item @if(Route::is('common_request_table') || Route::is('personal_request_table')) open active @endif">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -332,8 +342,8 @@ $adminUnreadReplyCount = \App\Models\CommunicationReply::where('reply_from', 'st
                         </a>
                     </div>
                     <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-                         <ul class="navbar-nav flex-row align-items-center ms-md-start">
-                          <li class="nav-item me-2">
+                        <ul class="navbar-nav flex-row align-items-center ms-md-start">
+                            <li class="nav-item me-2">
                                 <a class="nav-link position-relative" href="{{route('wfh_table')}}">
                                     <i class="icon-base ti tabler-home icon-22px text-heading"></i>
                                     <span class="badge bg-danger badge-notifications">{{ $wfhCount }}</span>
@@ -465,7 +475,7 @@ $adminUnreadReplyCount = \App\Models\CommunicationReply::where('reply_from', 'st
                                 <div class="text-body">
                                     &#169;
                                     <script>
-                                        document.write(new Date().getFullYear());
+                                    document.write(new Date().getFullYear());
                                     </script>
                                     , Technology Partner <a href="https://novelx.in/" target="_blank"
                                         class="footer-link text-danger"><b>&nbsp;NovelX</b></a>&nbsp;Team
@@ -525,35 +535,36 @@ $adminUnreadReplyCount = \App\Models\CommunicationReply::where('reply_from', 'st
     <script src="{{ asset('/assets') }}/js/main.js"></script>
     <!-- <script src="{{ asset('/assets') }}/js/dashboards-analytics.js"></script> -->
     <script>
-        document.getElementById('logout_btn').addEventListener('click', function() {
-            let btn = this;
-            btn.disabled = true;
-            btn.innerText = 'Processing...';
-            document.getElementById('logoutForm').submit();
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            const toastEl = document.getElementById('liveToast');
-            if (toastEl) {
-                const toast = new bootstrap.Toast(toastEl, {
-                    delay: 3000
-                });
-                toast.show();
-            }
-        });
+    document.getElementById('logout_btn').addEventListener('click', function() {
+        let btn = this;
+        btn.disabled = true;
+        btn.innerText = 'Processing...';
+        document.getElementById('logoutForm').submit();
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const toastEl = document.getElementById('liveToast');
+        if (toastEl) {
+            const toast = new bootstrap.Toast(toastEl, {
+                delay: 3000
+            });
+            toast.show();
+        }
+    });
     </script>
     <!-- Title -->
     <script>
-        const titles = [
-            "Custom Web Development Company",
-            "Innovative Web & Software Services ✔",
-            "Web Development & Digital Solutions 🚀",
-            "Welcome Back"
-        ];
-        let index = 0;
-        setInterval(() => {
-            document.title = titles[index];
-            index = (index + 1) % titles.length;
-        }, 2000);
+    const titles = [
+        "Custom Web Development Company",
+        "Innovative Web & Software Services ✔",
+        "Web Development & Digital Solutions 🚀",
+        "Welcome Back"
+    ];
+    let index = 0;
+    setInterval(() => {
+        document.title = titles[index];
+        index = (index + 1) % titles.length;
+    }, 2000);
     </script>
 </body>
+
 </html>

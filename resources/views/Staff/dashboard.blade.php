@@ -1333,7 +1333,7 @@ function popupNoted(id) {
         Processing...
     `;
 
-    fetch(`{{ route('popup.noted', ':id') }}`.replace(':id', id), {
+    fetch(`{{ route('popupNoted', ':id') }}`.replace(':id', id), {
         method: "POST",
         headers: {
             "X-CSRF-TOKEN": "{{ csrf_token() }}",
@@ -1375,7 +1375,7 @@ function popupNoted(id) {
 
 function popupDone(id) {
 
-    fetch(`{{ route('popup.done', ':id') }}`.replace(':id', id), {
+    fetch(`{{ route('popupDone', ':id') }}`.replace(':id', id), {
         method: "POST",
         headers: {
             "X-CSRF-TOKEN": "{{ csrf_token() }}",

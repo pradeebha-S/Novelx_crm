@@ -192,7 +192,7 @@ public function add_popup_manager(Request $request)
 
             // Username (you can change relation later)
             ->addColumn('username', function ($row) {
-                return $row->user_id ?? 'N/A';
+                return $row->user->name ?? 'N/A';
             })
 
             // Description

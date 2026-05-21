@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PopupController;
 use App\Http\Controllers\Admin\CandidateController;
+use App\Http\Controllers\Admin\ExpensesController;
 
 use App\Http\Controllers\Staff\StaffController;
 use App\Http\Controllers\Intern\InternController;
@@ -361,6 +362,13 @@ Route::prefix('admin')->group(function () {
         Route::post('/update_candidate', [CandidateController::class, 'update_candidate'])->name('update_candidate');
         Route::post('/update_popup_status', [PopupController::class, 'update_popup_status'])->name('update_popup_status');
 
+        Route::get('/common_expenses', [ExpensesController::class, 'common_expenses'])->name('admin.common_expenses');
+        Route::get('/project_expenses', [ExpensesController::class, 'project_expenses'])->name('admin.project_expenses');
+        Route::post('/add_common_expenses',[ExpensesController::class,'add_common_expenses'])->name('add_common_expenses');
+        Route::get('/common_expenses_data', [ExpensesController::class, 'common_expenses_data'])->name('common_expenses_data');
+        Route::post('/add_project_expenses',[ExpensesController::class,'add_project_expenses'])->name('add_project_expenses');
+        Route::get('/project_expenses_data', [ExpensesController::class, 'project_expenses_data'])->name('project_expenses_data');
+
     });
 });
 //Staff Routes
@@ -488,9 +496,9 @@ Route::prefix('staff')->group(function () {
 
         
         //pradeebha
-        Route::post('/popup/noted/{id}', [PopupController::class, 'popupNoted'])->name('popup.noted');
+        Route::post('/popupNoted/{id}', [PopupController::class, 'popupNoted'])->name('popupNoted');
 
-        Route::post('/popup/done/{id}', [PopupController::class, 'popupDone'])->name('popup.done');
+        Route::post('/popupDone/{id}', [PopupController::class, 'popupDone'])->name('popupDone');
     });
 });
 //intern
